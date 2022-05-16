@@ -1,0 +1,43 @@
+{% extends 'myapp/base1.html' %}
+{% load static %}
+{% block title %}Depot Login{% endblock %}
+{% block body %}
+<style>
+  input[type=text]{  width: 50%;
+  padding: 8px 20px;
+  margin: 2px 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+  border-radius: 4px;
+  color: black;}
+  input[type=password]{  width: 50%;
+  padding: 8px 20px;
+  margin: 2px 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+  border-radius: 4px;
+  color: black;}
+</style>
+<center>
+    <div class="container">
+        <form role="form" name="frm" action="{% url 'depot_login' %}"  method="post">
+            {% csrf_token %}
+            <h2><font color="#366092">Depot Login</font></h2>
+            <div class="form-group">
+                <label for="uname">User Name</label>
+                <input class="form-control" type="text" id="uname" name="uname">
+            </div>
+             <div class="form-group">
+                 <label for="passwd">Password</label>
+                 <input class="form-control" type="password" id="passwd" name="passwd">
+             </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Login</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+
+            <br/>
+
+        </form>
+    {{msg}}
+    </div>
+</center>
+{% endblock %}

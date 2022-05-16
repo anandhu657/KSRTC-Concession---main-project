@@ -1,0 +1,69 @@
+{% extends 'myapp/institution_base1.html' %}
+{% load static %}
+{% block title %}New Student Registration{% endblock %}
+{% block body %}
+<center>
+    <h2>New Student Registration</h2>
+	<div class="container">
+		<div class="row">
+		<div class="col"></div>
+		<div class="col">
+    <form role="form" name="frm" action="{% url 'institution_student_details_add' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+			<label for="fname">Name</label>
+	        <input class="form-control" type="text"  id="fname" name="fname" placeholder="First name" required="required">
+			<input class="form-control" type="text"  id="lname" name="lname" placeholder="Last name" required="required">
+		</div>
+	    <div class="form-group">
+            <label>Gender :</label>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" class="custom-control-input" id="gender1" name="gender" value="Male">
+  				<label class="custom-control-label" for="gender1">Male</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" class="custom-control-input" id="gender2" name="gender" value="Female">
+  				<label class="custom-control-label" for="gender2">Female</label>
+			</div>
+		</div>
+        <div class="form-group">
+			<label for="dob">DOB</label>
+	        <input type="date"  class="form-control" id="dob" name="dob">
+		</div>
+
+	    <div class="form-group">
+			<label for="addr1">Address</label>
+	        <input class="form-control" type="text"  id="addr1" name="addr1" placeholder="House" >
+			<input class="form-control" type="text"  id="street" name="street" placeholder="Street" >
+			<input class="form-control" type="text"  id="place" name="place" placeholder="City" >
+			<input class="form-control" type="text"  id="dist" name="dist" placeholder="District" >
+            <input type="text"  class="form-control" id="pin" name="pin" placeholder="pin" >
+		</div>
+		<div class="form-group">
+			<label for="father_name">Parents Name</label>
+	        <input class="form-control" type="text"  id="father_name" name="father_name" placeholder="father name" required="required">
+			<input class="form-control" type="text"  id="mothername" name="mothername" placeholder="mother name" required="required">
+		</div>
+		<div class="form-group">
+			<label for="g_contact">Contact</label>
+	        <input class="form-control" type="text"  id="g_contact" name="g_contact" placeholder="g_contact" required="required">
+			<input class="form-control" type="text"  id="p_contact" name="p_contact" placeholder="p_contact" required="required">
+		</div>
+		<div class="form-group">
+			<label for="course">Course</label>
+	        <input class="form-control" type="text"  id="course" name="course" placeholder="Course name" required="required">
+			<input class="form-control" type="text"  id="year" name="year" placeholder="Year" required="required">
+		</div>
+
+	    <button type="submit" class="btn btn-info" id="bt" name="bt">Register</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table>
+    </form>
+		</div>
+
+	{{msg}}
+		<div class="col"></div>
+	</div>
+		</div>
+</center>
+{% endblock %}

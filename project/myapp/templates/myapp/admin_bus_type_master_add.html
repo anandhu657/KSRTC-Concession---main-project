@@ -1,0 +1,28 @@
+{% extends 'myapp/admin_base1.html' %}
+{% load static %}
+{% block title %}Bus Type Add{% endblock %}
+{% block body %}
+<center>
+    <h1>Bus Type Add</h1>
+     <div class="container">
+         <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+         <form role="form" name="frm" action="{% url 'admin_bus_type_master_add'%}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="bus_type">Type :</label>
+            <input class="form-control" type="text" name="bus_type" id="bus_type" value="" required>
+        </div>
+       <button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Clear</button>
+    </form>
+     </div>
+         <div class="col-md-4">
+        </div>
+     </div>
+     </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

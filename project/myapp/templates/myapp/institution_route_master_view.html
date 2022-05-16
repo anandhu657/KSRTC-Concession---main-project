@@ -1,0 +1,55 @@
+{% extends 'myapp/institution_base1.html' %}
+{% load static %}
+{% block title %}Route Details{% endblock %}
+{% block body %}
+<center>
+    <h1>Route Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+         <input class="form-control" type="hidden" name="bus_type_id" id="bus_type_id" value="{{bus_type_id}}" required>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Depot</th>
+                <th>Bus Type</th>
+                <th>route_name</th>
+                <th>src</th>
+                <th>dest</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for pd in route_list %}
+            <tbody>
+            <tr>
+                <td>{{ pd.id }}</td>
+                {% for h in depot_list%}
+                {% if h.id == pd.depot_id%}
+                <td>{{ h.dpname }} ({{h.dist}})</td>
+                {%endif%}
+                {% endfor %}
+                {% for h in bus_list%}
+                {% if h.id == pd.bus_type_id%}
+                <td>{{ h.bus_type }}</td>
+                {%endif%}
+                {% endfor %}
+                <td>{{ pd.route_name }} </td>
+                <td>{{ pd.src }}</td>
+                <td>{{ pd.dest }}</td>
+                <td>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../institution_route_stop_details_view?route_id={{ pd.id }}&depot_id={{pd.depot_id}}'">Stop Details</button>
+                    <button type="button" class="btn btn-success p-1" onclick="location.href='../institution_app_form_add?route_id={{ pd.id }}'">Apply For Concession</button>
+
+                </td>
+
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'myapp/depot_base1.html' %}
+{% load static %}
+{% block title %}Route Stop Add{% endblock %}
+{% block body %}
+<center>
+    <h1>Route Stop Add</h1>
+     <div class="container">
+        <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+        <form role="form" name="frm" action="{% url 'depot_route_stop_details_add'%}" method="post">
+            {% csrf_token %}
+            <input class="form-control" type="hidden" name="route_id" id="route_id" value="{{route_id}}" required>
+            <div class="form-group" id="div1">
+                <label for="stop_id">Stop</label>
+                <select  name="stop_id" id="stop_id" class="form-control" >
+                    <option value="0">Select Stop</option>
+                    {% for h in stop_list%}
+                        <option value="{{h.id}}">{{h.stop_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="stop_no">stop_no :</label>
+                <input class="form-control" type="text" name="stop_no" id="stop_no" value="" required>
+            </div>
+
+            <div class="form-group">
+                <label for="stop_stage">stop_stage :</label>
+                <input class="form-control" type="text" name="stop_stage" id="stop_stage" value="" required>
+            </div>
+
+
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Clear</button>
+        </form>
+             </div>
+             <div class="col-md-4">
+            </div>
+         </div>
+     </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

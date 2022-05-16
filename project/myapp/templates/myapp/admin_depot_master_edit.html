@@ -1,0 +1,59 @@
+{% extends 'myapp/admin_base1.html' %}
+{% load static %}
+{% block title %}Depot Details Update{% endblock %}
+{% block body %}
+<center>
+    <h1>Expert Details Edit</h1>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+     <form role="form" name="frm" action="{% url 'admin_depot_master_edit'%}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+                <label for="dpname">Depot Name :</label>
+                <input class="form-control" type="text" name="dpname" id="dpname" value="{{od.dpname}}" required>
+            </div>
+            <div class="form-group">
+                <label for="dist">District :</label>
+                <input class="form-control" type="text" name="dist" id="dist" value="{{od.dist}}" required>
+            </div>
+            <div class="form-group">
+                <label for="adr1">Address1 :</label>
+                <input class="form-control" type="text" name="adr1" id="adr1" value="{{od.adr1}}" required>
+            </div>
+            <div class="form-group">
+                <label for="adr2">Address2 :</label>
+                <input class="form-control" type="text" name="adr2" id="adr2" value="{{od.adr2}}" required>
+            </div>
+        <div class="form-group">
+                <label for="pin">pin :</label>
+                <input class="form-control" type="text" name="pin" id="pin" value="{{od.pin}}" required>
+            </div>
+            <div class="form-group">
+                <label for="lno">land-no :</label>
+                <input class="form-control" type="text" name="lno" id="lno" value="{{od.lno}}" required>
+            </div>
+            <div class="form-group">
+                <label for="ph">ph :</label>
+                <input class="form-control" type="text" name="ph" id="ph" value="{{od.ph}}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input class="form-control" type="text" name="email" id="email" value="{{od.email}}" required>
+            </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Update</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Clear</button>
+            <input type="hidden" name="s_id" value="{{s_id}}">
+    </form>
+    </div>
+
+        <div class="col-md-4">
+        </div>
+        </div>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

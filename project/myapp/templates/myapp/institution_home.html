@@ -1,0 +1,10 @@
+{% extends 'myapp/institution_base.html' %}
+{% load static %}
+{% block title %}Hello Institution{% endblock %}
+{% block body %}
+<center>
+        <h2><font color="#366092">Welcome {{ uname}}</font></h2>
+         <img src="{% static './myapp/images/ksrtc.png' %}" width="600" height="400">
+
+</center>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'myapp/admin_base1.html' %}
+{% load static %}
+{% block title %}Crop Details{% endblock %}
+{% block body %}
+<center>
+    <h1>Crop Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+         <input class="form-control" type="hidden" name="bus_type_id" id="bus_type_id" value="{{bus_type_id}}" required>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Bus Type</th>
+                <th>stage</th>
+                <th>fare</th>
+                <th>month_fare</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for pd in rate_list %}
+            <tbody>
+            <tr>
+                <td>{{ pd.id }}</td>
+                {% for h in bus_list%}
+                {% if h.id == pd.bus_type_id%}
+                <td>{{ h.bus_type }}</td>
+                {%endif%}
+                {% endfor %}
+                <td>{{ pd.stage }} </td>
+                <td>{{ pd.fare }}</td>
+                <td>{{ pd.month_fare }}</td>
+                <td>
+                    <button type="button" class="btn btn-danger p-1" onclick="location.href='../admin_rate_master_delete?id={{ pd.id }}'">Delete</button>
+
+                </td>
+
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+        <button type="button" class="btn btn-info" onclick="location.href='../admin_rate_master_add'">Add Rate</button></h1>
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'myapp/institution_base1.html' %}
+{% load static %}
+{% block title %}Student Concession Details{% endblock %}
+{% block body %}
+<center>
+    <h1>Concession Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name(Address)</th>
+                <th>Institution</th>
+                <th>Depot</th>
+                <th>Route</th>
+                <th>Start</th>
+                <th>Stop</th>
+                <th>C_Number</th>
+                <th>Date</th>
+                <th>No Months</th>
+                <th>Per Month Rate</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+            </thead>
+            {% for afl in app_form_list %}
+            <tbody>
+            <tr>
+                <td>{{ afl.id }}</td>
+                {% for h in student_list%}
+                    {% if h.id == afl.student_id%}
+                    <td>{{ h.fname }}{{ h.lname }}({{h.dist}},{{h.pin}})</td>
+                    {%endif%}
+                {% endfor %}
+
+                {% for h in institution_list%}
+                    {% if h.id == afl.institution_id%}
+                    <td>{{ h.name }}</td>
+                    {%endif%}
+                {% endfor %}
+
+                {% for h in depot_list%}
+                    {% if h.id == afl.depot_id%}
+                    <td>{{ h.dpname }}({{h.dist}})</td>
+                    {%endif%}
+                {% endfor %}
+
+                {% for h in route_list%}
+                    {% if h.id == afl.route_id%}
+                    <td>{{ h.route_name }}</td>
+                    {%endif%}
+                {% endfor %}
+                <td>{{ afl.src }}</td>
+                <td>{{ afl.dest }}</td>
+                {% for h in consession_list%}
+                    {% if h.app_id == afl.id%}
+                    <td>{{ h.c_number }}</td>
+                    <td>{{ h.dt }}</td>
+                    <td>{{ h.no_months }}</td>
+                    <td>{{ h.stage_rate }}</td>
+                    {%endif%}
+                {% endfor %}
+                <td>{{ afl.status }}</td>
+                <td>
+                    {% if afl.status == 'approved' %}
+                    <button type="button" class="btn btn-success p-1" onclick="location.href='../institution_app_form_update?id={{ afl.id }}'">Renew</button>
+
+                    {% else %}
+                    <button type="button" class="btn btn-danger p-1" onclick="location.href='../institution_app_form_delete?id={{ afl.id }}'">Delete</button>
+                    {% endif %}
+
+                </td>
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

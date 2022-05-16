@@ -1,0 +1,42 @@
+{% extends 'myapp/institution_base1.html' %}
+{% load static %}
+{% block title %}Route Stop Details{% endblock %}
+{% block body %}
+<center>
+    <h1>Route Stop Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+       <input class="form-control" type="hidden" name="route_id" id="route_id" value="{{route_id}}" required>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Stop</th>
+                <th>stop_no</th>
+
+
+            </tr>
+            </thead>
+            {% for pd in route_stop_list %}
+            <tbody>
+            <tr>
+                <td>{{ pd.id }}</td>
+                {% for h in stop_list%}
+                {% if h.id == pd.stop_id%}
+                <td>{{ h.stop_name }}</td>
+                {%endif%}
+                {% endfor %}
+                <td>{{ pd.stop_no }} </td>
+
+
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}
